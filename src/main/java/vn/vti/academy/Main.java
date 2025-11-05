@@ -1,17 +1,21 @@
-package vn.vti.academy;
+import org.example.StudentOOP;
+import java.util.ArrayList;
+import java.util.List;
 
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
     public static void main(String[] args) {
-        //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
-        // to see how IntelliJ IDEA suggests fixing it.
-        System.out.printf("Hello and welcome!");
 
-        for (int i = 1; i <= 5; i++) {
-            //TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint
-            // for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
-            System.out.println("i = " + i);
+//Tạo danh sách List chứa các đối tượng Student
+        List<StudentOOP> students = new ArrayList<>();
+//Thêm 3 đối tượng Student vào danh sách
+        students.add(new StudentOOP("SV001", "Ánh", "Lê", "Hà Nội", 9, 8));
+        students.add(new StudentOOP("SV002", "Phương", "Trần", "Huế", 8.5, 7));
+        students.add(new StudentOOP("SV003", "Hoàn", "Nguyễn", "Hồ Chí Minh", 7, 8.5));
+//Duyệt danh sách và in thông tin sinh viên
+        for (StudentOOP student : students) {
+            System.out.println("student: " + student.studentName() + ",grade:" + student.getGrade());
+
         }
+
     }
 }
