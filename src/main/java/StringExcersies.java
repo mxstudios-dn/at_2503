@@ -1,5 +1,5 @@
 
-public class CheckStringEnding {
+class StringExcersises {
 
     public static void main(String[] args) {
 
