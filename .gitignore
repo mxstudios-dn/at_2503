@@ -39,3 +39,8 @@ build/
 .DS_Store
 .idea/vcs.xml
 .idea/encodings.xml
+.idea/copilot.data.migration.agent.xml
+.idea/copilot.data.migration.ask.xml
+.idea/copilot.data.migration.ask2agent.xml
+.idea/copilot.data.migration.edit.xml
+.idea/material_theme_project_new.xml
