@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 public class HashMapExercise {
     private static final Scanner scanner = new Scanner(System.in);
-    public static void main(String[] args){
+    public static void run(){
         HashMap< String, Integer> populationMap = new HashMap<>();
 
         populationMap.put("Vietnam", 98);
@@ -29,10 +29,12 @@ public class HashMapExercise {
             case 1:
                 for (String key: populationMap.keySet()){
                     System.out.println("Tat ca cac Key: " + key);
+                    break;
                 }
             case 2:
                 for (int value: populationMap.values()){
                     System.out.println("Tat ca cac Value: "+ value);
+                    break;
                 }
         }
     }
