@@ -29,8 +29,8 @@ public class HashMapExercise {
             case 1:
                 for (String key: populationMap.keySet()){
                     System.out.println("Tat ca cac Key: " + key);
-                    break;
                 }
+                break;
             case 2:
                 for (int value: populationMap.values()){
                     System.out.println("Tat ca cac Value: "+ value);
