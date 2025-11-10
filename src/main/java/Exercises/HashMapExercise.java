@@ -34,7 +34,6 @@ public class HashMapExercise {
             case 2:
                 for (int value: populationMap.values()){
                     System.out.println("Tat ca cac Value: "+ value);
-                    break;
                 }
         }
     }
