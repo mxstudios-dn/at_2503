@@ -1,4 +1,4 @@
-package vn.vti.academy;
+package module
 
 public class Book {
     private String id;
