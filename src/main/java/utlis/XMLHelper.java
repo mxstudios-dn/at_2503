@@ -1,15 +1,15 @@
 package utils;
 
+import modals.Book;
 import org.w3c.dom.*;
 //import javax.xml.catalog.Catalog;
 import javax.xml.parsers.*;
-import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
 public class XMLHelper {
-    public static List<utils.Book> loadBooks(String filePath) {
-        List<utils.Book> books = new ArrayList<>();
+    public static List<Book> loadBooks(String filePath) {
+        List<Book> books = new ArrayList<>();
         try {
             //Tạo DocumentBuilder để đọc file XML
             DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
@@ -33,7 +33,7 @@ public class XMLHelper {
                 String publishDate = bookElement.getElementsByTagName("publish_date").item(0).getTextContent();
                 String description = bookElement.getElementsByTagName("description").item(0).getTextContent();
 
-                utils.Book book = new utils.Book(id, author, title, genre, price, publishDate, description);
+                Book book = new Book(id, author, title, genre, price, publishDate, description);
                 books.add(book);
             }
 

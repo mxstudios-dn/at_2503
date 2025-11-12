@@ -1,4 +1,4 @@
-package utils;
+package modals;
 
 public class Book {
     //Khởi tạo thuộc tính
@@ -22,9 +22,8 @@ public class Book {
     @Override
     public String toString(){
         return String.format(
-                "Book{id='%s';author='%s';title='%s';genre='%s';price='%s';description='%s'}"
-                ,id, author, title, genre, price, description
-        );
+                "Book{id='%s';author='%s';title='%s';genre='%s';price='%s'}"
+                ,id, author, title, genre, price, description);
     }
     public String getId(){
         return id;
