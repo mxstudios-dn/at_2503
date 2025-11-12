@@ -118,3 +118,10 @@
             environment.</description>
     </book>
 </catalog>
+
+HOME WORK XML
+1. Load this XML file to an ArrayList
+2. Mỗi phần từ của ArrayList là một đối tượng Book
+3. Đối tượng Book có các thuộc tính tương ứng với các thẻ con của thẻ book
+4. In ra danh sách các cuốn sách có giá > 20
+5. Search cuốn sách theo author và in ra thông tin cuốn sách đó

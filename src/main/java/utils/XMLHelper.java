@@ -26,11 +26,14 @@ public class XMLHelper extends Helper{
      */
     public XMLHelper(String filePath) throws ParserConfigurationException, SAXException, IOException {
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+
         factory.setValidating(false);
         factory.setIgnoringElementContentWhitespace(false);
         DocumentBuilder builder = factory.newDocumentBuilder();
+
         this.xmlDocument = builder.parse(filePath);
         XPathFactory xpathFactory = XPathFactory.newInstance();
+
         this.xpath = xpathFactory.newXPath();
     }
 
@@ -39,7 +42,7 @@ public class XMLHelper extends Helper{
      * @return Java XML Document object
      */
     public Document getXmlDocument() {
-        return xmlDocument;
+        return this.xmlDocument;
     }
 
     /**
@@ -76,5 +79,16 @@ public class XMLHelper extends Helper{
             }
         }
         return null;
+    }
+
+    /**
+     * Get URL based on the current environment from .env file.
+     * @return URL as String
+     * @throws XPathExpressionException
+     */
+    public String getUrl() throws XPathExpressionException {
+        String environment = this.dotenv.get("ENV");
+        String expression = String.format("//environment[@name='%s']/url", environment);
+        return getValueByXPath(expression);
     }
 }
