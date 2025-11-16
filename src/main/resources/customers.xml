@@ -1,0 +1,91 @@
+<?xml version="1.0"?>
+<customers>
+    <customer id="55000">
+        <name>Charter Group</name>
+        <address>
+            <street>100 Main</street>
+            <city>Framingham</city>
+            <state>MA</state>
+            <zip>01701</zip>
+        </address>
+        <address>
+            <street>720 Prospect</street>
+            <city>Framingham</city>
+            <state>MA</state>
+            <zip>01701</zip>
+        </address>
+        <address>
+            <street>120 Ridge</street>
+            <state>MA</state>
+            <zip>01760</zip>
+        </address>
+    </customer>
+
+    <customer id="55001">
+        <name>Acme Solutions Inc.</name>
+        <address>
+            <street>45 River Rd</street>
+            <city>Boston</city>
+            <state>MA</state>
+            <zip>02110</zip>
+        </address>
+    </customer>
+
+    <customer id="55002">
+        <name>Global Tech Corp</name>
+        <address>
+            <street>999 Park Ave</street>
+            <city>New York</city>
+            <state>NY</state>
+            <zip>10022</zip>
+        </address>
+        <address>
+            <street>30 Rockefeller Plaza</street>
+            <city>New York</city>
+            <state>NY</state>
+            <zip>10112</zip>
+        </address>
+    </customer>
+
+    <customer id="55003">
+        <name>Pineapple Dynamics</name>
+        <phone>555-123-4567</phone>
+        <address>
+            <street>88 Apple Way</street>
+            <city>Orlando</city>
+            <state>FL</state>
+            <zip>32801</zip>
+        </address>
+        <address>
+            <street>200 Beach Dr</street>
+            <state>FL</state>
+            <zip>32808</zip>
+        </address>
+    </customer>
+
+    <customer id="55004">
+        <name>West Coast Logistics</name>
+        <address>
+            <street>1 Market St</street>
+            <city>San Francisco</city>
+            <state>CA</state>
+            <zip>94105</zip>
+        </address>
+    </customer>
+
+    <customer id="55005">
+        <name>Interstate Providers</name>
+        <address>
+            <street>15 Oak Lane</street>
+            <city>Worcester</city>
+            <state>MA</state>
+            <zip>01608</zip>
+        </address>
+        <address>
+            <street>30 Palm Blvd</street>
+            <city>Los Angeles</city>
+            <state>CA</state>
+            <zip>90001</zip>
+        </address>
+    </customer>
+</customers>
