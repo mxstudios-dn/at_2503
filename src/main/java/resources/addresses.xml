@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AddressList>
+    <Address>
+        <Name>Hotel Rose Garden</Name>
+        <Details>
+            <Street>1860 The Alameda</Street>
+            <City>San Jose</City>
+            <State>CA</State>
+            <Zip>95126</Zip>
+            <TimeZone>PST</TimeZone>
+        </Details>
+    </Address>
+
+    <Address>
+        <Name>Mercy Medical Center Redding</Name>
+        <Details>
+            <Street>2175 Rosaline Ave</Street>
+            <City>Redding</City>
+            <State>CA</State>
+            <Zip>96001</Zip>
+            <TimeZone>PST</TimeZone>
+        </Details>
+    </Address>
+
+    <Address>
+        <Name>Best Western Plus Gateway Inn &amp;</Name>
+        <Details>
+            <Street>800 S Abilene St</Street>
+            <City>Aurora</City>
+            <State>CO</State>
+            <Zip>80012</Zip>
+            <TimeZone>MST</TimeZone>
+        </Details>
+    </Address>
+
+    <Address>
+        <Name>Sitting Room</Name>
+        <Details>
+            <Street>824 W Boulevard</Street>
+            <City>Lewistown</City>
+            <State>MT</State>
+            <Zip>59457</Zip>
+            <TimeZone>MST</TimeZone>
+        </Details>
+    </Address>
+</AddressList>
