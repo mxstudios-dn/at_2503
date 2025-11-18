@@ -6,12 +6,16 @@ import javax.xml.xpath.XPath;
 import javax.xml.xpath.XPathConstants;
 import javax.xml.xpath.XPathExpressionException;
 import javax.xml.xpath.XPathFactory;
+import org.w3c.dom.Element;
+import modals.Book;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class XMLHelper extends Helper{
     private final Document xmlDocument;
@@ -32,6 +36,7 @@ public class XMLHelper extends Helper{
         DocumentBuilder builder = factory.newDocumentBuilder();
 
         this.xmlDocument = builder.parse(filePath);
+        this.xmlDocument.getDocumentElement().normalize();
         XPathFactory xpathFactory = XPathFactory.newInstance();
 
         this.xpath = xpathFactory.newXPath();
@@ -90,5 +95,67 @@ public class XMLHelper extends Helper{
         String environment = this.dotenv.get("ENV");
         String expression = String.format("//environment[@name='%s']/url", environment);
         return getValueByXPath(expression);
+    }
+
+    /**
+     * Helper method to safely retrieve the text content of a child element.
+     */
+    private static String getElementValue(Element parentElement, String tagName) {
+        try {
+            // Get the list of elements with the given tag name (e.g., "author")
+            NodeList nodeList = parentElement.getElementsByTagName(tagName);
+            if (nodeList != null && nodeList.getLength() > 0) {
+                Element element = (Element) nodeList.item(0);
+                // Return the text content, stripped of leading/trailing whitespace
+                return element.getTextContent().trim();
+            }
+        } catch (Exception e) {
+            // Log or handle case where tag is missing if necessary
+        }
+        return "";
+    }
+
+    public List<Book> getAllBooks() {
+        List<Book> books = new ArrayList<Book>();
+
+        try {
+            // 2. Get all <book> nodes
+            NodeList nodeList = this.xmlDocument.getElementsByTagName("book");
+
+            // 3. Iterate through each <book> node
+            for (int i = 0; i < nodeList.getLength(); i++) {
+                Node node = nodeList.item(i);
+
+                if (node.getNodeType() == Node.ELEMENT_NODE) {
+                    Element bookElement = (Element) node;
+
+                    // Extract Book data
+                    String id = bookElement.getAttribute("id");
+                    String author = getElementValue(bookElement, "author");
+                    String title = getElementValue(bookElement, "title");
+                    String genre = getElementValue(bookElement, "genre");
+                    String publishDate = getElementValue(bookElement, "publish_date");
+                    String description = getElementValue(bookElement, "description");
+
+                    // Parse price safely
+                    double price = 0.0;
+                    try {
+                        String priceStr = getElementValue(bookElement, "price");
+                        price = Double.parseDouble(priceStr);
+                    } catch (NumberFormatException e) {
+                        System.err.println("Error parsing price for book ID: " + id);
+                    }
+
+                    // Create Book object and add to list
+                    Book book = new Book(id, author, title, genre, price, publishDate, description);
+                    books.add(book);
+                }
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return books;
     }
 }

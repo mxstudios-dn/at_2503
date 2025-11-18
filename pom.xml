@@ -15,6 +15,7 @@
         <version.json>20240303</version.json>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <version.dotenv>3.2.0</version.dotenv>
+        <version.csv>5.12.0</version.csv>
     </properties>
 
     <dependencies>
@@ -30,6 +31,14 @@
             <artifactId>dotenv-java</artifactId>
             <version>${version.dotenv}</version> <!-- Use the latest version available -->
         </dependency>
+
+        <!-- https://mvnrepository.com/artifact/com.opencsv/opencsv -->
+        <dependency>
+            <groupId>com.opencsv</groupId>
+            <artifactId>opencsv</artifactId>
+            <version>${version.csv}</version>
+        </dependency>
+
     </dependencies>
 
 </project>

@@ -1,3 +1,4 @@
+package Exercises;
 
 class StringExcersises {
 
