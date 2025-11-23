@@ -9,9 +9,36 @@
     <version>1.0-SNAPSHOT</version>
 
     <properties>
-        <maven.compiler.source>8</maven.compiler.source>
-        <maven.compiler.target>8</maven.compiler.target>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
+        <version.monitorjbl>2.2.0</version.monitorjbl>
+        <version.json>20240303</version.json>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <version.dotenv>3.2.0</version.dotenv>
+        <version.csv>5.12.0</version.csv>
     </properties>
+
+    <dependencies>
+        <!-- https://mvnrepository.com/artifact/org.json/json -->
+        <dependency>
+            <groupId>org.json</groupId>
+            <artifactId>json</artifactId>
+            <version>${version.json}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>io.github.cdimascio</groupId>
+            <artifactId>dotenv-java</artifactId>
+            <version>${version.dotenv}</version> <!-- Use the latest version available -->
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/com.opencsv/opencsv -->
+        <dependency>
+            <groupId>com.opencsv</groupId>
+            <artifactId>opencsv</artifactId>
+            <version>${version.csv}</version>
+        </dependency>
+
+    </dependencies>
 
 </project>
