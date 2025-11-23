@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <persons>
+        <enviroment name="Dev">
+        <Person>
+            <Name>Ngo Hanh Dung</Name>
+            <Age>22</Age>
+            <Email>hanhdung123@gmail.com</Email>
+        </Person>
+        </enviroment>
+        <enviroment name="QA">
+            <Person>
+                <Name>Nguyen Hoan Thien</Name>
+                <Age>23</Age>
+                <Email>ThienHoan123@gmail.com</Email>
+            </Person>
+        </enviroment>
+    </persons>
+</configuration>
