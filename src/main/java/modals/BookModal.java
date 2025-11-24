@@ -1,6 +1,6 @@
 package modals;
 
-public class Book {
+public class BookModal {
     private String id;
     private String author;
     private String title;
@@ -12,13 +12,13 @@ public class Book {
     /**
      * Default constructor (optional, but good practice for bean-style classes)
      */
-    public Book() {
+    public BookModal() {
     }
 
     /**
      * Parameterized constructor
      */
-    public Book(String id, String author, String title, String genre, double price, String publishDate, String description) {
+    public BookModal(String id, String author, String title, String genre, double price, String publishDate, String description) {
         this.id = id;
         this.author = author;
         this.title = title;

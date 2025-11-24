@@ -7,7 +7,7 @@ import javax.xml.xpath.XPathConstants;
 import javax.xml.xpath.XPathExpressionException;
 import javax.xml.xpath.XPathFactory;
 import org.w3c.dom.Element;
-import modals.Book;
+import modals.BookModal;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
@@ -115,8 +115,8 @@ public class XMLHelper extends Helper{
         return "";
     }
 
-    public List<Book> getAllBooks() {
-        List<Book> books = new ArrayList<Book>();
+    public List<BookModal> getAllBooks() {
+        List<BookModal> books = new ArrayList<BookModal>();
 
         try {
             // 2. Get all <book> nodes
@@ -147,7 +147,7 @@ public class XMLHelper extends Helper{
                     }
 
                     // Create Book object and add to list
-                    Book book = new Book(id, author, title, genre, price, publishDate, description);
+                    BookModal book = new BookModal(id, author, title, genre, price, publishDate, description);
                     books.add(book);
                 }
             }
