@@ -8,6 +8,7 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
 import model.Person;
+import model.CustomerBT2;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
@@ -18,43 +19,57 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class XMLHelper extends Helper{
-    private Document xlmDocument;
-    private XPath xpath;
-    //File xmlFile = new File("path/to/your/file.xml");
-//    public static List<Person> readPersonsFromXml(String filePath)
-//            throws IOException, ParserConfigurationException, SAXException {
-//
-//        List<Person> persons = new ArrayList<>();
-//
-//        File file = new File(filePath);
-//        DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-//        DocumentBuilder builder = factory.newDocumentBuilder();
-//        Document doc = builder.parse(file);
-//
-//        doc.getDocumentElement().normalize();
-//
-//        NodeList envList = doc.getElementsByTagName("enviroment");
-//
-//        for (int i = 0; i < envList.getLength(); i++) {
-//            Element env = (Element) envList.item(i);
-//            String envName = env.getAttribute("name");
-//
-//            NodeList personList = env.getElementsByTagName("Person");
-//
-//            for (int j = 0; j < personList.getLength(); j++) {
-//                Element personElement = (Element) personList.item(j);
-//
-//                String name = personElement.getElementsByTagName("Name").item(0).getTextContent();
-//                int age = Integer.parseInt(personElement.getElementsByTagName("Age").item(0).getTextContent());
-//                String email = personElement.getElementsByTagName("Email").item(0).getTextContent();
-//
-//                Person person = new Person(name, age, email, envName);
-//                persons.add(person);
-//            }
-//        }
-//        return persons;
-//    }
+public class XMLHelper {
 
+    public static List<CustomerBT2> readCustomersFromXml(String filePath)
+            throws IOException, ParserConfigurationException, SAXException {
 
+        List<CustomerBT2> customers = new ArrayList<>();
+
+        DocumentBuilder builder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
+        Document doc = builder.parse(new File(filePath));
+        doc.getDocumentElement().normalize();
+
+        NodeList customerNodes = doc.getElementsByTagName("Customer");
+
+        for (int i = 0; i < customerNodes.getLength(); i++) {
+            Element customerEnv = (Element) customerNodes.item(i);
+
+            NodeList personNodes = customerEnv.getElementsByTagName("Person");
+            for (int j = 0; j < personNodes.getLength(); j++) {
+                Element personElement = (Element) personNodes.item(j);
+
+                String firstName   = getTagValue(personElement, "FirstName");
+                String lastName    = getTagValue(personElement, "LastName");
+                String email       = getTagValue(personElement, "Email");
+                String customerRole= getTagValue(personElement, "CustomerRole");
+                String dateOfBirth = getTagValue(personElement, "DateOfBirth");
+                String phoneNumber = getTagValue(personElement, "Phone");
+
+                // Phone có thể null → kiểm tra trước khi parse
+//                String phoneStr = getTagValue(personElement, "Phone");
+//                int phoneNumber = (phoneStr != null && !phoneStr.isEmpty())
+//                        ? Integer.parseInt(phoneStr) : 0;
+
+                // IsActive ép kiểu sang boolean
+                String isActiveStr = getTagValue(personElement, "IsActive");
+                boolean isActive = Boolean.parseBoolean(isActiveStr);
+
+                customers.add(new CustomerBT2(
+                        firstName, lastName, email, customerRole, dateOfBirth, phoneNumber, isActive
+                ));
+            }
+        }
+        return customers;
+    }
+
+    // 🔹 Hàm tiện ích lấy giá trị tag, tránh lặp lại
+    private static String getTagValue(Element parent, String tagName) {
+        NodeList nodeList = parent.getElementsByTagName(tagName);
+        if (nodeList.getLength() > 0 && nodeList.item(0) != null) {
+            return nodeList.item(0).getTextContent();
+        }
+        return null;
+    }
 }
+

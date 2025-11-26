@@ -9,4 +9,5 @@ public class Constant {
     public static final String PERSON_FILE_PATH = Paths.get(RESOURCES_PATH, "Person.xml").toString();
     public static final String BOOK_FILE_PATH = Paths.get(RESOURCES_PATH, "book.xml").toString();
     public static final String CUSTOMER_FILE_PATH = Paths.get(RESOURCES_PATH, "customers.xml").toString();
+    public static final String CUSTOMERBT_FILE_PATH = Paths.get(RESOURCES_PATH, "Customer.xml").toString();
 }

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Customers>
+    <Customer CustomerId="1001">
+        <FirstName>John</FirstName>
+        <LastName>Doe</LastName>
+        <Email>john.doe@example.com</Email>
+        <Phone>+1-555-123-4567</Phone>
+        <DateOfBirth>1990-05-21</DateOfBirth>
+        <CustomerRole>Primary</CustomerRole>
+        <IsActive>true</IsActive>
+    </Customer>
+
+    <Customer CustomerId="1002">
+        <FirstName>Emily</FirstName>
+        <LastName>Smith</LastName>
+        <Email>emily.smith@example.com</Email>
+        <Phone>+1-555-888-2222</Phone>
+        <DateOfBirth>1985-12-11</DateOfBirth>
+        <CustomerRole>Secondary</CustomerRole>
+        <IsActive>false</IsActive>
+    </Customer>
+
+    <Customer CustomerId="1003">
+        <FirstName>Michael</FirstName>
+        <LastName>Brown</LastName>
+        <Email>michael.brown@example.com</Email>
+        <Phone>+1-555-999-7777</Phone>
+        <DateOfBirth>1992-03-08</DateOfBirth>
+        <CustomerRole>Guest</CustomerRole>
+        <IsActive>true</IsActive>
+    </Customer>
+</Customers>
