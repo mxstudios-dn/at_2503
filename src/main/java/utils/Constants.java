@@ -15,4 +15,10 @@ public final class Constants {
     // CSV Helper Constants
     public static final String ADDRESSES_FILE_PATH = Paths.get(RESOURCES_PATH, "addresses.csv").toString();
     public static final String CSV_DELIMITER = ",";
+    
+    // Log Path Constants
+    public static final String LOG_DIR = Paths.get(PROJECT_ROOT_PATH, "target", "logs").toString();
+    public static final String AUTOMATION_LOG = Paths.get(LOG_DIR, "automation.log").toString();
+    public static final String ERROR_LOG = Paths.get(LOG_DIR, "errors.log").toString();
+    public static final String TEST_LOG = Paths.get(LOG_DIR, "test-execution.log").toString();
 }

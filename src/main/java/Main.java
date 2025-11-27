@@ -1,16 +1,16 @@
 
 import com.opencsv.exceptions.CsvException;
-import core.SeleniumDriverBase;
+import core.DriverManager;
+import core.TestSettings;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.WebElement;
 
 import java.io.IOException;
 
 public class Main {
     public static void main(String[] args) throws CsvException, IOException {
-        SeleniumDriverBase driverBase = new SeleniumDriverBase();
-        WebDriver driver = driverBase.getDriver();
-        driver.get("https://www.example.com");
-        driver.quit();
+        DriverManager driverManager = new DriverManager("chrome");
+        driverManager.navigateTo(TestSettings.BASE_URL);
     }
 }

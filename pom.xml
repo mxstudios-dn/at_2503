@@ -19,6 +19,7 @@
         <version.selenium>4.38.0</version.selenium>
         <version.junit>6.0.1</version.junit>
         <version.surefire>3.5.4</version.surefire>
+        <version.log4j>2.24.3</version.log4j>
     </properties>
 
     <dependencies>
@@ -55,6 +56,26 @@
             <artifactId>junit-jupiter-api</artifactId>
             <version>${version.junit}</version>
             <scope>test</scope>
+        </dependency>
+            <!-- Log4j2 Core -->
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-core</artifactId>
+            <version>${version.log4j}</version>
+        </dependency>
+
+        <!-- Log4j2 API -->
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-api</artifactId>
+            <version>${version.log4j}</version>
+        </dependency>
+
+        <!-- Log4j2 SLF4J Bridge (optional, for libraries using SLF4J) -->
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-slf4j2-impl</artifactId>
+            <version>${version.log4j}</version>
         </dependency>
     </dependencies>
 
