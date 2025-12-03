@@ -97,19 +97,20 @@ public class DriverManager extends Helper {
 
     /**
      * Finds a web element using the specified locator.
-     * @param locator The locator to find the element.
+     * @param selector The locator to find the element.
      * @return The found WebElement.
      */
-    public WebElement findElement(By locator) {
-        logger.trace("Finding element: {}", locator);
-        try {
-            WebElement element = this.driver.findElement(locator);
-            logger.trace("Element found: {}", locator);
-            return element;
-        } catch (Exception e) {
-            logger.error("Failed to find element: {}", locator, e);
-            throw e;
-        }
+    public WebElement findElement(By selector) {
+        return this.driver.findElement(selector);
+    }
+
+    /**
+     * Gets the title of the current page.
+     * @return The page title.
+     */
+    public String getTitle() {
+        logger.debug("Getting page title");
+        return this.driver.getTitle();
     }
 }
 

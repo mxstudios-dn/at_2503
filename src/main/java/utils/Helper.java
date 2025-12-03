@@ -6,7 +6,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 public class Helper {
-    protected final Logger logger = LogManager.getLogger(this.getClass());
+    protected final static Logger logger = LogManager.getLogger("at_2503");
 
     public Helper(){
         try {
