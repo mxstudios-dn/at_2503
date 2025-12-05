@@ -15,7 +15,7 @@ public class TestSettings {
     public static final JSONObject ENV_CONFIG = Objects.requireNonNull(Helper.loadJsonFile(JSON_DATA_PATH)).getJSONObject(TEST_ENV);
     public static final String BASE_URL = ENV_CONFIG.getString("base_url");
     public static final int DEFAULT_TIMEOUT = 30; // in seconds
-    public static final String BROWSER_TYPE = "chrome"; // default browser type
+    public static final String BROWSER_TYPE = System.getProperty("browser", DOTENV.get("BROWSER","chrome")); // default browser type
     public static final String SCREEN_RESOLUTION = "1920,1080";
     public static final boolean HEADLESS = false;
 

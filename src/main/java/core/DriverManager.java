@@ -14,7 +14,7 @@ public class DriverManager extends Helper {
 
     public DriverManager() {
         super();
-        initializeDriver("chrome");
+        initializeDriver(TestSettings.BROWSER_TYPE);
     }
 
     public DriverManager(String browserType) {

@@ -10,7 +10,7 @@ import utils.Helper;
 
 import java.util.concurrent.TimeUnit;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class BasePage extends Helper {
     protected WebDriver webDriver;
@@ -36,6 +36,12 @@ public class BasePage extends Helper {
         findElement(selector).sendKeys(text);
     }
 
+    @SuppressWarnings("null")
+    protected String getElementAttribute(By selector, String attributeName) {
+        logger.info("Getting attribute {} from element {}", attributeName, selector);
+        return findElement(selector).getAttribute(attributeName);
+    }
+
     protected void clickButton(By selector) {
         logger.info("Clicking button {}", selector);
         findElement(selector).click();
@@ -53,7 +59,18 @@ public class BasePage extends Helper {
     }
 
     protected void verifyTrue(boolean condition, String message) {
+        logger.info("Verifying condition is true");
         assertTrue(condition, message);
+    }
+
+    protected void verifyFalse(boolean condition, String message) {
+        logger.info("Verifying condition is false");
+        assertFalse(condition, message);
+    }
+
+    protected void verifyEquals(Object expected, Object actual, String message) {
+        logger.info("Verifying equality of expected and actual values");
+        assertEquals(expected, actual, message);
     }
 
     @SuppressWarnings("null")
