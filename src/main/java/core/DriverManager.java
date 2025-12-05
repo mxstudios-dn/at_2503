@@ -10,7 +10,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import utils.Helper;
 
 public class DriverManager extends Helper {
-    WebDriver driver;
+    private static final ThreadLocal<WebDriver> _webDriver = new ThreadLocal<WebDriver>();
 
     public DriverManager() {
         super();
@@ -24,7 +24,7 @@ public class DriverManager extends Helper {
 
     public void initializeDriver(String browserType) {
         logger.info("Initializing {} browser", browserType);
-        
+        WebDriver driver;
         try {
             // Implementation for initializing the WebDriver
             switch (browserType) {
@@ -34,21 +34,22 @@ public class DriverManager extends Helper {
                     if(TestSettings.HEADLESS){
                         options.addArguments("--headless=new");
                     }
-                    this.driver = new ChromeDriver(options);
+                    driver = new ChromeDriver(options);
                     logger.debug("Chrome browser initialized with headless mode");
                     break;
                 case "firefox":
-                    this.driver = new FirefoxDriver();
+                    driver = new FirefoxDriver();
                     logger.debug("Firefox browser initialized");
                      break;
                  case "edge":
-                     this.driver = new EdgeDriver();
+                     driver = new EdgeDriver();
                      logger.debug("Edge browser initialized");
                       break;
                 default:
                     logger.error("Unsupported browser type: {}", browserType);
                     throw new IllegalArgumentException("Unsupported browser type: " + browserType);
             }
+            _webDriver.set(driver);
             logger.info("WebDriver initialized successfully");
         } catch (Exception e) {
             logger.error("Failed to initialize {} browser", browserType, e);
@@ -57,20 +58,34 @@ public class DriverManager extends Helper {
     }
 
     /**
-     * Gets the WebDriver instance.
-     * @return
+     * get driver from thread driver
+     *
+     * @return driver for current thread
      */
-    public WebDriver getDriver() {
-        if (this.driver == null) {
-            logger.warn("Driver is null, returning null reference");
-        }
-        return this.driver;
+    public static WebDriver getDriver() {
+        return _webDriver.get();
+    }
+
+    /**
+     * set current driver to thread driver
+     *
+     * @param driver
+     */
+    public static void setWebDriver(WebDriver driver) {
+        _webDriver.set(driver);
+    }
+
+    /**
+     * remove current driver from thread driver
+     */
+    public static void removeDriver() {
+        _webDriver.remove();
     }
 
     public void navigateTo(String url) {
         logger.info("Navigating to URL: {}", url);
         try {
-            this.driver.get(url);
+            _webDriver.get().get(url);
             logger.debug("Navigation to {} successful", url);
         } catch (Exception e) {
             logger.error("Failed to navigate to URL: {}", url, e);
@@ -82,10 +97,11 @@ public class DriverManager extends Helper {
      * Quits the WebDriver instance, closing all associated windows.
      */
     public void quit() {
-        if (this.driver != null) {
+        if (_webDriver.get() != null) {
             logger.info("Quitting WebDriver");
             try {
-                this.driver.quit();
+                _webDriver.get().quit();
+                _webDriver.remove();
                 logger.debug("WebDriver quit successfully");
             } catch (Exception e) {
                 logger.error("Error while quitting driver", e);
@@ -101,7 +117,7 @@ public class DriverManager extends Helper {
      * @return The found WebElement.
      */
     public WebElement findElement(By selector) {
-        return this.driver.findElement(selector);
+        return _webDriver.get().findElement(selector);
     }
 
     /**
@@ -110,7 +126,7 @@ public class DriverManager extends Helper {
      */
     public String getTitle() {
         logger.debug("Getting page title");
-        return this.driver.getTitle();
+        return _webDriver.get().getTitle();
     }
 }
 

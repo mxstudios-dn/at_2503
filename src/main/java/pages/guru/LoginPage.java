@@ -1,8 +1,8 @@
 package pages.guru;
 
 import core.BasePage;
-import core.DriverManager;
 import org.openqa.selenium.By;
+
 
 class LoginPageSelector {
     public static final By txtUsernameId = By.name("emailid");
@@ -11,10 +11,6 @@ class LoginPageSelector {
 }
 
 public class LoginPage extends BasePage {
-
-    public LoginPage(DriverManager driverManager) {
-        this.setDriverManager(driverManager);
-    }
 
     public void enterEmailID(String email) {
         logger.info("Entering email ID: {}", email);

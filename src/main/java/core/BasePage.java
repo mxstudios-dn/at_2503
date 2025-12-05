@@ -1,7 +1,11 @@
 package core;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import java.time.Duration;
 import utils.Helper;
 
 import java.util.concurrent.TimeUnit;
@@ -9,24 +13,22 @@ import java.util.concurrent.TimeUnit;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class BasePage extends Helper {
-    protected DriverManager driverManager;
+    protected WebDriver webDriver;
 
-    public BasePage() {
-        logger.debug("{} initialized", this.getClass().getSimpleName());
-    }
-
-    public void setDriverManager(DriverManager driverManager) {
-        this.driverManager = driverManager;
-    }
-
-    public void openGuru99DemoSite() {
+    @SuppressWarnings("null")
+    public void openSite() {
         logger.info("Navigating to URL: {}", TestSettings.BASE_URL);
-        driverManager.getDriver().get(TestSettings.BASE_URL);
+        DriverManager.getDriver().get(TestSettings.BASE_URL);
+        logger.info("Navigation to URL: {} completed", TestSettings.BASE_URL);
     }
 
+    public WebDriverWait getWait(long waitTime) {
+        return new WebDriverWait(DriverManager.getDriver(), Duration.ofSeconds(waitTime));
+    }
+
+    @SuppressWarnings("null")
     private WebElement findElement(By selector) {
-        //TODO: Handle waiting for element to be visible
-        return driverManager.getDriver().findElement(selector);
+        return getWait(TestSettings.WAIT_ELEMENT).until(ExpectedConditions.visibilityOfElementLocated(selector));
     }
 
     protected void enterText(By selector, String text) {
@@ -54,5 +56,16 @@ public class BasePage extends Helper {
         assertTrue(condition, message);
     }
 
+    @SuppressWarnings("null")
+    protected void verifyElementVisible(By selector, String errorMessage) {
+        logger.info("Verifying visibility of element {}", selector);
+        try {
+            getWait(0).until(ExpectedConditions.visibilityOfElementLocated(selector));
+            logger.info("Element {} is visible", selector);
+        } catch (Exception e) {
+            logger.error("Element {} is not visible: {}", selector, errorMessage);
+            throw new AssertionError(errorMessage);
+        }
+    }
 
 }

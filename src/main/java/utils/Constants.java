@@ -7,6 +7,7 @@ public final class Constants {
     public static final String PROJECT_ROOT_DIR = System.getProperty("user.dir");
     public static final String PROJECT_ROOT_PATH = Paths.get(PROJECT_ROOT_DIR).toString();
     public static final String RESOURCES_PATH = Paths.get(PROJECT_ROOT_PATH, "src", "main", "resources").toString();
+    public static final String JSON_DATA_PATH = Paths.get(RESOURCES_PATH, "TestData.json").toString();
 
     // XML Helper Constants
     public static final String CONFIG_FILE_PATH = Paths.get(RESOURCES_PATH, "config.xml").toString();
