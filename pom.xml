@@ -13,13 +13,30 @@
         <maven.compiler.target>25</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
+        <version.json>20240303</version.json>
         <selenium.version>4.39.0</selenium.version>
         <testng.version>7.11.0</testng.version>
         <allure.testng.version>2.32.0</allure.testng.version>
+        <version.surefire>3.5.4</version.surefire>
+        <version.log4j>2.24.3</version.log4j>
+        <version.dotenv>3.2.0</version.dotenv>
 
     </properties>
 
     <dependencies>
+        <!-- https://mvnrepository.com/artifact/org.json/json -->
+        <dependency>
+            <groupId>org.json</groupId>
+            <artifactId>json</artifactId>
+            <version>${version.json}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>io.github.cdimascio</groupId>
+            <artifactId>dotenv-java</artifactId>
+            <version>${version.dotenv}</version> <!-- Use the latest version available -->
+        </dependency>
+        
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-java</artifactId>
@@ -36,6 +53,20 @@
             <artifactId>allure-testng</artifactId>
             <version>${allure.testng.version}</version>
             <scope>test</scope>
+        </dependency>
+
+        <!-- Log4j2 API -->
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-api</artifactId>
+            <version>${version.log4j}</version>
+        </dependency>
+
+        <!-- Log4j2 SLF4J Bridge (optional, for libraries using SLF4J) -->
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-slf4j2-impl</artifactId>
+            <version>${version.log4j}</version>
         </dependency>
     </dependencies>
 
