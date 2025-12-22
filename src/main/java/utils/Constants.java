@@ -1,7 +1,5 @@
 package utils;
 
-import core.TestSettings;
-
 import java.nio.file.Paths;
 
 public final class Constants {
