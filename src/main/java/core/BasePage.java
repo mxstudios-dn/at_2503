@@ -1,5 +1,7 @@
 package core;
 import java.time.Duration;
+
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -27,6 +29,9 @@ public class BasePage extends Helper {
 
 
     private WebElement findElement(By selector) {
+        if (selector == null) {
+            throw new IllegalArgumentException("Selector cannot be null");
+        }
         return getWait(TestSettings.WAIT_ELEMENT).until(ExpectedConditions.visibilityOfElementLocated(selector));
     }
 
@@ -44,10 +49,16 @@ public class BasePage extends Helper {
     }
 
     protected void waitForElementInvisible(By selector) {
+        if (selector == null) {
+            throw new IllegalArgumentException("Selector cannot be null");
+        }
         getWait(TestSettings.WAIT_ELEMENT).until(ExpectedConditions.invisibilityOfElementLocated(selector));
     }
 
     private WebElement waitForElementClickable(By selector) {
+        if (selector == null) {
+            throw new IllegalArgumentException("Selector cannot be null");
+        }
         return getWait(TestSettings.WAIT_ELEMENT).until(ExpectedConditions.elementToBeClickable(selector));
     }
 
@@ -57,13 +68,20 @@ public class BasePage extends Helper {
     }
 
     protected void enterTextWithoutWait(By selector, String text) {
+        if (selector == null) {
+            throw new IllegalArgumentException("Selector cannot be null");
+        }
         logger.info("Entering text {}", text);
         this.driver.findElement(selector).sendKeys(text);
     }
 
     protected String getElementAttribute(By selector, String attributeName) {
         logger.info("Getting attribute {} from element {}", attributeName, selector);
-        return findElement(selector).getDomAttribute(attributeName);
+        if (attributeName == null) {
+            throw new IllegalArgumentException("Selector cannot be null");
+        }
+        String value = findElement(selector).getDomAttribute(attributeName);
+        return value != null ? value : "";
     }
 
    protected String getElementValue(By selector) {
@@ -78,6 +96,9 @@ public class BasePage extends Helper {
     }
 
     protected void executeJavaScript(String script) {
+        if (script == null) {
+            throw new IllegalArgumentException("JavaScript script cannot be null");
+        }
         logger.info("Executing JavaScript: {}", script);
         JavascriptExecutor js = (JavascriptExecutor) this.driver;
         js.executeScript(script);
@@ -89,4 +110,17 @@ public class BasePage extends Helper {
         return text;
     }
 
+    protected Alert switchToAlert() {
+        logger.info("Switching to alert");
+        return this.driver.switchTo().alert();
+    }
+
+    protected void acceptAlertAction(Alert alert) {
+        logger.info("Accepting alert");
+        alert.accept();
+    }
+    protected void dismissAlertAction(Alert alert) {
+        logger.info("Dismissing alert");
+        alert.dismiss();
+    }
 }

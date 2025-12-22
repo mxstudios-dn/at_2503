@@ -198,6 +198,9 @@ public class DriverManager extends Helper {
      * @param url Target URL to navigate to
      */
     public void navigateTo(String url) {
+        if (url == null) {
+            throw new IllegalArgumentException("URL must not be null");
+        }
         logger.info("Navigating to URL: {}", url);
         try {
             getDriver().get(url);

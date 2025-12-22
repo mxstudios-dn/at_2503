@@ -26,6 +26,10 @@ public class TestSettings {
 
     /** Base URL for the test environment */
     public static final String BASE_URL = ENV_CONFIG.getString("base_url");
+    public static final String AUTOMATION_DEMO_LOGIN_URL = String.format("%s/Index.html", TestSettings.BASE_URL);
+    public static final String AUTOMATION_DEMO_ALERTS_URL = String.format("%s/Alerts.html", TestSettings.BASE_URL);
+    public static final String AUTOMATION_DEMO_DATE_PICKER_URL = String.format("%s/Datepicker.html", TestSettings.BASE_URL);
+
 
     // BROWSER SETTINGS
     /** Browser type (chrome, firefox, edge) - Usage: mvn clean test -Dbrowser=firefox */

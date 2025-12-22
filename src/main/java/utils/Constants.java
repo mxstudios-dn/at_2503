@@ -25,10 +25,6 @@ public final class Constants {
     public static final String ERROR_LOG = Paths.get(LOG_DIR, "errors.log").toString();
     public static final String TEST_LOG = Paths.get(LOG_DIR, "test-execution.log").toString();
 
-    // Automation Demo Site Constants
-    public static final String AUTOMATION_DEMO_ALERTS_URL = String.format("%s/Alerts.html", TestSettings.BASE_URL);
-    public static final String AUTOMATION_DEMO_DATE_PICKER_URL = String.format("%s/Datepicker.html", TestSettings.BASE_URL);
-
     // Upload File Constants
     public static final String SAMPLE_FILE_PATH = Paths.get(RESOURCES_PATH, "sample.jpg").toString();
     public static final String CURRENT_USERNAME = System.getProperty("user.name");

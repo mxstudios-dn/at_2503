@@ -16,7 +16,6 @@
         <version.json>20240303</version.json>
         <selenium.version>4.39.0</selenium.version>
         <testng.version>7.11.0</testng.version>
-        <allure.testng.version>2.32.0</allure.testng.version>
         <version.surefire>3.5.4</version.surefire>
         <version.log4j>2.24.3</version.log4j>
         <version.dotenv>3.2.0</version.dotenv>
@@ -48,12 +47,6 @@
             <version>${testng.version}</version>
             <scope>test</scope>
         </dependency>
-        <dependency>
-            <groupId>io.qameta.allure</groupId>
-            <artifactId>allure-testng</artifactId>
-            <version>${allure.testng.version}</version>
-            <scope>test</scope>
-        </dependency>
 
         <!-- Log4j2 API -->
         <dependency>
@@ -75,10 +68,10 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
-                <version>3.2.5</version>
+                <version>${version.surefire}</version>
                 <configuration>
                     <suiteXmlFiles>
-                        <suiteXmlFile>testng.xml</suiteXmlFile>
+                        <suiteXmlFile>testng-executer/testng_single.xml</suiteXmlFile>
                     </suiteXmlFiles>
                 </configuration>
             </plugin>

@@ -52,6 +52,11 @@ public class BaseTest extends Helper {
     }
     
     // Assertion Helpers
+    /**
+     * Verifies that a condition is true and logs the result.
+     * @param condition
+     * @param message
+     */
     protected void verifyTrue(boolean condition, String message) {
         try {
             Assert.assertTrue(condition, message);
@@ -62,6 +67,11 @@ public class BaseTest extends Helper {
         }
     }
 
+    /**
+     * Verifies that a condition is false and logs the result.
+     * @param condition
+     * @param message
+     */
     protected void verifyFalse(boolean condition, String message) {
         try {
             Assert.assertFalse(condition, message);
@@ -72,6 +82,12 @@ public class BaseTest extends Helper {
         }
     }
 
+    /**
+     * Verifies that two objects are equal and logs the result.
+     * @param actual
+     * @param expected
+     * @param message
+     */
     protected void verifyEquals(Object actual, Object expected, String message) {
         try {
             Assert.assertEquals(actual, expected, message);
@@ -82,6 +98,10 @@ public class BaseTest extends Helper {
         }
     }
 
+    /**
+     * Logs a test step message.
+     * @param message
+     */
     protected void logStep(String message) {
         logger.info("[STEP] " + message);
     }
