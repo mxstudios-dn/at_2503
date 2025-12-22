@@ -32,7 +32,7 @@ public class BasePage extends Helper {
         if (url == null) {
             throw new IllegalArgumentException("URL cannot be null");
         }
-        logger.info("Navigating to URL: {}", url);
+        logger.info("[Base Page] Navigating to URL: {}", url);
         driver.get(url);
     }
 
@@ -95,7 +95,7 @@ public class BasePage extends Helper {
      * @param text The text to enter.
      */
     protected void enterText(By selector, String text) {
-        logger.info("Entering text {}", text);
+        logger.info("[Base Page] Entering text {}", text);
         findElement(selector).sendKeys(text);
     }
 
@@ -109,7 +109,7 @@ public class BasePage extends Helper {
         if (selector == null) {
             throw new IllegalArgumentException("Selector cannot be null");
         }
-        logger.info("Entering text {}", text);
+        logger.info("[Base Page] Entering text {}", text);
         this.driver.findElement(selector).sendKeys(text);
     }
 
@@ -121,7 +121,7 @@ public class BasePage extends Helper {
      * @return The attribute value, or empty string if not present.
      */
     protected String getElementAttribute(By selector, String attributeName) {
-        logger.info("Getting attribute {} from element {}", attributeName, selector);
+        logger.info("[Base Page] Getting attribute {} from element {}", attributeName, selector);
         if (attributeName == null) {
             throw new IllegalArgumentException("Selector cannot be null");
         }
@@ -136,7 +136,7 @@ public class BasePage extends Helper {
      * @return The value or text content.
      */
     protected String getElementValue(By selector) {
-        logger.info("Getting value from element {}", selector);
+        logger.info("[Base Page] Getting value from element {}", selector);
         WebElement element = findElement(selector);
         return element.getText().isEmpty() ? element.getDomProperty("value") : element.getText();
     }
@@ -147,7 +147,7 @@ public class BasePage extends Helper {
      * @param selector The By selector for the element.
      */
     protected void clickElement(By selector) {
-        logger.info("Clicking element {}", selector);
+        logger.info("[Base Page] Clicking element {}", selector);
         waitForElementClickable(selector).click();
     }
 
@@ -160,7 +160,7 @@ public class BasePage extends Helper {
         if (script == null) {
             throw new IllegalArgumentException("JavaScript script cannot be null");
         }
-        logger.info("Executing JavaScript: {}", script);
+        logger.info("[Base Page] Executing JavaScript: {}", script);
         JavascriptExecutor js = (JavascriptExecutor) this.driver;
         js.executeScript(script);
     }
@@ -173,7 +173,7 @@ public class BasePage extends Helper {
      */
     protected String getElementText(By selector) {
         String text = findElement(selector).getText();
-        logger.info("Retrieved text '{}' from element {}", text, selector);
+        logger.info("[Base Page] Retrieved text '{}' from element {}", text, selector);
         return text;
     }
 
@@ -183,7 +183,7 @@ public class BasePage extends Helper {
      * @return The Alert object.
      */
     protected Alert switchToAlert() {
-        logger.info("Switching to alert");
+        logger.info("[Base Page] Switching to alert");
         return this.driver.switchTo().alert();
     }
 
@@ -193,7 +193,7 @@ public class BasePage extends Helper {
      * @param alert The Alert to accept.
      */
     protected void acceptAlertAction(Alert alert) {
-        logger.info("Accepting alert");
+        logger.info("[Base Page] Accepting alert");
         alert.accept();
     }
     
@@ -203,7 +203,7 @@ public class BasePage extends Helper {
      * @param alert The Alert to dismiss.
      */
     protected void dismissAlertAction(Alert alert) {
-        logger.info("Dismissing alert");
+        logger.info("[Base Page] Dismissing alert");
         alert.dismiss();
     }
 }

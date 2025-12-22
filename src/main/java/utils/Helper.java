@@ -3,6 +3,8 @@ package utils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.json.JSONObject;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
@@ -19,6 +21,11 @@ public class Helper {
         logger.info("[STEP] " + message);
     }
 
+    /**
+     * @deprecated Avoid using Thread.sleep for test waits. Use explicit waits instead.
+     *             See waitForSeconds for a recommended alternative.
+     */
+    @Deprecated
     protected void sleepInSeconds(long seconds) {
         try {
             Thread.sleep(seconds * 1000);
@@ -28,8 +35,15 @@ public class Helper {
         }
     }
 
-    protected void logMethodStep(String methodName) {
-        logger.warn("---- Executing method: {} ----", methodName);
+    /**
+     * Waits for the specified number of seconds using WebDriverWait. This is preferred over Thread.sleep.
+     * Usage: waitForSeconds(driver, seconds);
+     * @param driver The WebDriver instance
+     * @param seconds Number of seconds to wait
+     */
+    protected void waitForSeconds(WebDriver driver, long seconds) {
+        new WebDriverWait(driver, java.time.Duration.ofSeconds(seconds))
+                .until(d -> false);
     }
 
     /**
@@ -56,6 +70,4 @@ public class Helper {
             return null;
         }
     }
-
-
 }
