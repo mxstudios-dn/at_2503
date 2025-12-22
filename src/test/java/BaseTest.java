@@ -97,12 +97,4 @@ public class BaseTest extends Helper {
             throw e;
         }
     }
-
-    /**
-     * Logs a test step message.
-     * @param message
-     */
-    protected void logStep(String message) {
-        logger.info("[STEP] " + message);
-    }
 }

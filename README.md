@@ -147,4 +147,9 @@ See `AlertTest.java` and `LoginTest.java` for working examples.
 See `src/test/java/AlertTest.java` for a sample alert handling test.
 
 ---
-For more details, see code comments and configuration in `core/`, `pages/`, and `testng-executer/`.
+
+## Author
+Minh Pham
+
+## Contact
+For questions, support, or contributions, contact: mxstudios.dn@gmail.com
