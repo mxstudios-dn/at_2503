@@ -26,6 +26,7 @@ public class BaseTest extends Helper {
         logger.info("[Setup] Environment: {}", TestSettings.TEST_ENV);
         logger.info("[Setup] Browser: {}", TestSettings.BROWSER_TYPE);
         logger.info("========================================");
+        
         driverManager = new DriverManager();
         basePage = new BasePage();
         basePage.navigateTo(TestSettings.BASE_URL);
@@ -35,6 +36,12 @@ public class BaseTest extends Helper {
     public void beforeTest(ITestContext context) {
         String testName = context.getName();
         logger.info("[BeforeTest] Running test: " + testName);
+    }
+
+    @BeforeMethod
+    public void beforeMethod(ITestContext context) {
+        String methodName = context.getCurrentXmlTest().getName();
+        logger.info("[BeforeMethod] Starting method: " + methodName);
     }
 
     @AfterClass

@@ -1,3 +1,4 @@
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import core.TestSettings;
@@ -8,26 +9,27 @@ public class AlertTest extends BaseTest {
     LoginPage loginPage;
     AlertPage alertPage;
 
-     @Test
-     public void alertWithOKCancel() {
-         /**
-          * Test Case: Verify Alert with OK & Cancel functionality
-          */
-        logStep("1. Open Alert page");
-        alertPage = new AlertPage();
-        alertPage.navigateTo(TestSettings.AUTOMATION_DEMO_ALERTS_URL);
+    @Test
+    public void alertWithOKCancel() {
+        /**
+        * Test Case: Verify Alert with OK & Cancel functionality
+        */
+      alertPage = new AlertPage();
 
-        logStep("2. Automation Testing - Alert with OK & Cancel tab");
-        alertPage.selectAlertTab("Alert with OK & Cancel");
+      logStep("1. Open Alert page");
+      alertPage.navigateTo(TestSettings.AUTOMATION_DEMO_ALERTS_URL);
 
-        logStep("3. Click 'Alert with OK' button to display an alert box");
-        alertPage.clickAlertWithOKCancelButton();
+      logStep("2. Automation Testing - Alert with OK & Cancel tab");
+      alertPage.selectAlertTab("Alert with OK & Cancel");
 
-        logStep("4. Dismiss the alert box");
-        alertPage.dismissAlert();
+      logStep("3. Click 'Alert with OK' button to display an alert box");
+      alertPage.clickAlertWithOKCancelButton();
 
-        logStep("VP. Verify the alert was dismissed successfully");
-        verifyEquals(alertPage.getAlertDismissedMessage(), "You Pressed Cancel", "Alert dismissed message is incorrect");
-     }
+      logStep("4. Dismiss the alert box");
+      alertPage.dismissAlert();
+
+      logStep("VP. Verify the alert was dismissed successfully");
+      verifyEquals(alertPage.getAlertDismissedMessage(), "You Pressed Cancel", "Alert dismissed message is incorrect");
+    }
     
 }
