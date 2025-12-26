@@ -1,6 +1,8 @@
+package tests;
 import core.DriverManager;
 import core.TestSettings;
 import org.testng.ITestContext;
+import org.testng.ITestResult;
 import org.testng.Assert;
 import org.testng.annotations.*;
 import core.BasePage;
@@ -42,6 +44,20 @@ public class BaseTest extends Helper {
     public void beforeMethod(ITestContext context) {
         String methodName = context.getCurrentXmlTest().getName();
         logger.info("[BeforeMethod] Starting method: " + methodName);
+    }
+
+    @AfterMethod
+    public void afterMethod(ITestContext context, ITestResult result) {
+        String methodName = context.getCurrentXmlTest().getName();
+        logger.info("[AfterMethod] Finished method: " + methodName);
+        if (result.getStatus() == ITestResult.FAILURE) {
+            logger.error("Test Failed: " + result.getTestName() + " - " + result.getName());
+
+            // 2. Thực hiện chụp màn hình
+            if (DriverManager.getDriver() != null) {
+                captureScreenshot(result.getName()+"_afterMethod");
+            }
+        }
     }
 
     @AfterClass

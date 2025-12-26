@@ -8,7 +8,7 @@
     </test>
     <test name="alert-tests">
         <classes>
-            <class name="AlertTest"/>
+            <class name="tests.AlertTest"/>
         </classes>
     </test>
 </suite>

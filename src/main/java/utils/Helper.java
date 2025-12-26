@@ -3,9 +3,16 @@ package utils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.json.JSONObject;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.io.FileHandler;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import core.DriverManager;
+
+import java.io.File;
+import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -68,6 +75,22 @@ public class Helper {
         } catch (Exception e) {
             logger.error("Failed to load JSON file: {}", filePath, e);
             return null;
+        }
+    }
+
+    public void captureScreenshot(String testName) {
+        try {
+            TakesScreenshot ts = (TakesScreenshot) DriverManager.getDriver();
+            File source = ts.getScreenshotAs(OutputType.FILE);
+            
+            // Lưu ảnh vào thư mục "screenshots" với tên là tên test case
+            String filePath = Paths.get(Constants.SCREEN_SHOT_PATH, testName+".png").toString();
+            File destination = new File(filePath);
+            FileHandler.copy(source, destination);
+            
+            logger.info("Screenshot taken: " + destination.getAbsolutePath());
+        } catch (IOException e) {
+            logger.error("Exception while taking screenshot: " + e.getMessage());
         }
     }
 }

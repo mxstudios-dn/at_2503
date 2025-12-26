@@ -1,3 +1,4 @@
+package tests;
 import pages.LoginPage;
 import pages.RegisterPage;
 import core.TestSettings;
@@ -16,6 +17,6 @@ public class LoginTest extends BaseTest {
         registerPage = loginPage.openRegisterPage();
 
         logStep("VP: Verify that Register Page is loaded");
-        verifyTrue(registerPage.isRegisterPageLoaded(), "Register Page should be loaded");
+        verifyFalse(registerPage.isRegisterPageLoaded(), "Register Page should be loaded");
     }
 }
