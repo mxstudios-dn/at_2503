@@ -81,13 +81,8 @@ public class BaseTest extends Helper {
      * @param message
      */
     protected void verifyTrue(boolean condition, String message) {
-        try {
-            Assert.assertTrue(condition, message);
-            logger.info("[ASSERTION PASSED] " + message);
-        } catch (AssertionError e) {
-            logger.error("[ASSERTION FAILED] " + message, e);
-            throw e;
-        }
+        Assert.assertTrue(condition, message);
+        logger.info("[ASSERTION PASSED] " + message);
     }
 
     /**
@@ -96,13 +91,8 @@ public class BaseTest extends Helper {
      * @param message
      */
     protected void verifyFalse(boolean condition, String message) {
-        try {
-            Assert.assertFalse(condition, message);
-            logger.info("[ASSERTION PASSED] " + message);
-        } catch (AssertionError e) {
-            logger.error("[ASSERTION FAILED] " + message, e);
-            throw e;
-        }
+        Assert.assertFalse(condition, message);
+        logger.info("[ASSERTION PASSED] " + message);
     }
 
     /**
@@ -112,12 +102,7 @@ public class BaseTest extends Helper {
      * @param message
      */
     protected void verifyEquals(Object actual, Object expected, String message) {
-        try {
-            Assert.assertEquals(actual, expected, message);
-            logger.info("[ASSERTION PASSED] " + message);
-        } catch (AssertionError e) {
-            logger.error("[ASSERTION FAILED] " + message, e);
-            throw e;
-        }
+        Assert.assertEquals(actual, expected, message);
+        logger.info("[ASSERTION PASSED] " + message);
     }
 }

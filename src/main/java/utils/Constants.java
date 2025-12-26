@@ -8,8 +8,8 @@ public final class Constants {
     public static final String PROJECT_ROOT_PATH = Paths.get(PROJECT_ROOT_DIR).toString();
     public static final String RESOURCES_PATH = Paths.get(PROJECT_ROOT_PATH, "src", "main", "resources").toString();
     public static final String JSON_DATA_PATH = Paths.get(RESOURCES_PATH, "TestData.json").toString();
-    public static final String SCREEN_SHOT_PATH = Paths.get(PROJECT_ROOT_PATH, "target", "screenshots").toString();
-    public static final String RECORD_PATH = Paths.get(PROJECT_ROOT_PATH, "target", "reports").toString();
+    public static final String SCREENSHOTS_PATH = Paths.get(PROJECT_ROOT_PATH, "screenshots").toString();
+    public static final String RECORDS_PATH = Paths.get(PROJECT_ROOT_PATH, "target", "reports").toString();
 
     // XML Helper Constants
     public static final String CONFIG_FILE_PATH = Paths.get(RESOURCES_PATH, "config.xml").toString();

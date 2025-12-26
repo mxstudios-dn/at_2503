@@ -19,10 +19,18 @@
         <version.surefire>3.5.4</version.surefire>
         <version.log4j>2.24.3</version.log4j>
         <version.dotenv>3.2.0</version.dotenv>
+        <version.monte>0.7.7.0</version.monte>
 
     </properties>
 
     <dependencies>
+        <!-- https://mvnrepository.com/artifact/com.github.stephenc.monte/monte-screen-recorder -->
+        <dependency>
+            <groupId>com.github.stephenc.monte</groupId>
+            <artifactId>monte-screen-recorder</artifactId>
+            <version>${version.monte}</version>
+        </dependency>
+        
         <!-- https://mvnrepository.com/artifact/org.json/json -->
         <dependency>
             <groupId>org.json</groupId>

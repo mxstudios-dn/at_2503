@@ -84,7 +84,7 @@ public class Helper {
             File source = ts.getScreenshotAs(OutputType.FILE);
             
             // Lưu ảnh vào thư mục "screenshots" với tên là tên test case
-            String filePath = Paths.get(Constants.SCREEN_SHOT_PATH, testName+".png").toString();
+            String filePath = Paths.get(Constants.SCREENSHOTS_PATH, testName+".png").toString();
             File destination = new File(filePath);
             FileHandler.copy(source, destination);
             
