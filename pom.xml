@@ -9,8 +9,8 @@
     <version>1.0-SNAPSHOT</version>
 
     <properties>
-        <maven.compiler.source>25</maven.compiler.source>
-        <maven.compiler.target>25</maven.compiler.target>
+        <maven.compiler.source>21</maven.compiler.source>
+        <maven.compiler.target>21</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
         <version.json>20240303</version.json>
@@ -20,8 +20,21 @@
         <version.log4j>2.24.3</version.log4j>
         <version.dotenv>3.2.0</version.dotenv>
         <version.monte>0.7.7.0</version.monte>
-
+        <version.aspectj>1.9.20.1</version.aspectj>
+        <version.allure>2.24.0</version.allure>
     </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>io.qameta.allure</groupId>
+                <artifactId>allure-bom</artifactId>
+                <version>${version.allure}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
     <dependencies>
         <!-- https://mvnrepository.com/artifact/com.github.stephenc.monte/monte-screen-recorder -->
@@ -70,6 +83,12 @@
             <artifactId>log4j-slf4j2-impl</artifactId>
             <version>${version.log4j}</version>
         </dependency>
+        
+        <!-- Add necessary Allure dependencies to dependencies section -->
+        <dependency>
+            <groupId>io.qameta.allure</groupId>
+            <artifactId>allure-testng</artifactId>
+        </dependency>
     </dependencies>
 
     <build>
@@ -79,10 +98,20 @@
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>${version.surefire}</version>
                 <configuration>
+                    <argLine>
+                        -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${version.aspectj}/aspectjweaver-${version.aspectj}.jar"
+                    </argLine>
                     <suiteXmlFiles>
                         <suiteXmlFile>testng-executer/testng_single.xml</suiteXmlFile>
                     </suiteXmlFiles>
                 </configuration>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.aspectj</groupId>
+                        <artifactId>aspectjweaver</artifactId>
+                        <version>${version.aspectj}</version>
+                    </dependency>
+                </dependencies>
             </plugin>
         </plugins>
     </build>

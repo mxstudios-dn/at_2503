@@ -2,6 +2,11 @@ package tests;
 import pages.LoginPage;
 import pages.RegisterPage;
 import core.TestSettings;
+import io.qameta.allure.Description;
+import io.qameta.allure.Owner;
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
+
 import org.testng.annotations.Test;
 
 public class LoginTest extends BaseTest {
@@ -9,14 +14,17 @@ public class LoginTest extends BaseTest {
     RegisterPage registerPage;
 
     @Test
+    @Description("Verify that user can navigate to Register Page from Login Page")
+    @Severity(SeverityLevel.CRITICAL)
+    @Owner("Minh Pham")
     public void testLogin() {
-        logStep("Navigating to Login Page: " + TestSettings.BASE_URL + "/login");
+        logStep("1. Navigating to Login Page: " + TestSettings.BASE_URL + "/login");
         loginPage = new LoginPage();
 
-        logStep("Skip login step");
+        logStep("2. Skip login step");
         registerPage = loginPage.openRegisterPage();
 
         logStep("VP: Verify that Register Page is loaded");
-        verifyFalse(registerPage.isRegisterPageLoaded(), "Register Page should be loaded");
+        verifyTrue(registerPage.isRegisterPageLoaded(), "Register Page should be loaded");
     }
 }

@@ -10,6 +10,7 @@ import org.openqa.selenium.io.FileHandler;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import core.DriverManager;
+import io.qameta.allure.Step;
 
 import java.io.File;
 import java.io.IOException;
@@ -24,6 +25,7 @@ public class Helper {
      * Logs a test step message.
      * @param message
      */
+    @Step("Step {message}")
     protected void logStep(String message) {
         logger.info("[STEP] " + message);
     }
