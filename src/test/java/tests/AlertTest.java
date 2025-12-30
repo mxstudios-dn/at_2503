@@ -29,7 +29,7 @@ public class AlertTest extends BaseTest {
       alertPage.dismissAlert();
 
       logStep("VP. Verify the alert was dismissed successfully");
-      verifyEquals(alertPage.getAlertDismissedMessage(), "You Pressed Cancel", "Alert dismissed message is incorrect");
+      verifyEquals(alertPage.getAlertDismissedMessage(), "You Pressed Cancel - FAILED", "Alert dismissed message is incorrect");
     }
     
 }

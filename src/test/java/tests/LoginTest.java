@@ -2,6 +2,7 @@ package tests;
 import pages.LoginPage;
 import pages.RegisterPage;
 import core.TestSettings;
+import io.qameta.allure.Allure;
 import io.qameta.allure.Description;
 import io.qameta.allure.Owner;
 import io.qameta.allure.Severity;
@@ -13,11 +14,12 @@ public class LoginTest extends BaseTest {
     LoginPage loginPage;
     RegisterPage registerPage;
 
-    @Test
+    @Test()
     @Description("Verify that user can navigate to Register Page from Login Page")
     @Severity(SeverityLevel.CRITICAL)
     @Owner("Minh Pham")
     public void testLogin() {
+        Allure.label("tag", "Login");
         logStep("1. Navigating to Login Page: " + TestSettings.BASE_URL + "/login");
         loginPage = new LoginPage();
 

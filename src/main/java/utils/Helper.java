@@ -80,7 +80,7 @@ public class Helper {
         }
     }
 
-    public void captureScreenshot(String testName) {
+    public String captureScreenshot(String testName) {
         try {
             TakesScreenshot ts = (TakesScreenshot) DriverManager.getDriver();
             File source = ts.getScreenshotAs(OutputType.FILE);
@@ -91,8 +91,10 @@ public class Helper {
             FileHandler.copy(source, destination);
             
             logger.info("Screenshot taken: " + destination.getAbsolutePath());
+            return destination.getAbsolutePath();
         } catch (IOException e) {
             logger.error("Exception while taking screenshot: " + e.getMessage());
         }
+        return null;
     }
 }

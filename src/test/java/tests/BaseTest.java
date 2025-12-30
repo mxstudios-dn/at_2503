@@ -1,6 +1,8 @@
 package tests;
 import core.DriverManager;
 import core.TestSettings;
+import io.qameta.allure.Allure;
+
 import org.testng.ITestContext;
 import org.testng.ITestResult;
 import org.testng.Assert;
@@ -8,6 +10,8 @@ import org.testng.annotations.*;
 import core.BasePage;
 import utils.Helper;
 import java.net.MalformedURLException;
+import java.nio.file.Paths;
+import java.nio.file.Files;
 
 public class BaseTest extends Helper {
     protected DriverManager driverManager;
@@ -55,7 +59,14 @@ public class BaseTest extends Helper {
 
             // 2. Thực hiện chụp màn hình
             if (DriverManager.getDriver() != null) {
-                captureScreenshot(result.getName()+"_afterMethod");
+                String screenshotPath = captureScreenshot(result.getName()+"_afterMethod");
+                // Attach screenshot to Allure report
+                try {
+                    byte[] screenshotBytes = Files.readAllBytes(Paths.get(screenshotPath));
+                    Allure.addAttachment("Screenshot on Failure", "image/png", new java.io.ByteArrayInputStream(screenshotBytes), "png");
+                } catch (java.io.IOException e) {
+                    logger.error("Failed to attach screenshot to Allure report", e);
+                }
             }
         }
     }
