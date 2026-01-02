@@ -42,6 +42,7 @@ public class AlertPage extends BasePage {
         logger.info("[Alert Page]: Clicking 'Alert with OK & Cancel' button");
         clickElement(AlertPageSelector.btnAlertWithOKCancel);
     }
+    
     public String getAlertDismissedMessage() {
         logger.info("[Alert Page]: Verifying alert dismissed message");
         return getElementText(AlertPageSelector.txtMessageCancelTab);
