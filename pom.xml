@@ -9,8 +9,7 @@
     <version>1.0-SNAPSHOT</version>
 
     <properties>
-        <maven.compiler.source>21</maven.compiler.source>
-        <maven.compiler.target>21</maven.compiler.target>
+        <maven.compiler.release>21</maven.compiler.release>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
         <version.json>20240303</version.json>
@@ -22,6 +21,8 @@
         <version.monte>0.7.7.0</version.monte>
         <version.aspectj>1.9.20.1</version.aspectj>
         <version.allure>2.24.0</version.allure>
+        <version.cucumber_testng>7.33.0</version.cucumber_testng>
+        <version.cucumber>7.6.0</version.cucumber>
     </properties>
 
     <dependencyManagement>
@@ -89,6 +90,21 @@
             <groupId>io.qameta.allure</groupId>
             <artifactId>allure-testng</artifactId>
         </dependency>
+
+        <!-- https://mvnrepository.com/artifact/io.cucumber/cucumber-java -->
+        <dependency>
+            <groupId>io.cucumber</groupId>
+            <artifactId>cucumber-java</artifactId>
+            <version>${version.cucumber}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/io.cucumber/cucumber-testng -->
+        <dependency>
+            <groupId>io.cucumber</groupId>
+            <artifactId>cucumber-testng</artifactId>
+            <version>${version.cucumber}</version>
+        </dependency>
     </dependencies>
 
     <build>
@@ -101,9 +117,6 @@
                     <argLine>
                         -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${version.aspectj}/aspectjweaver-${version.aspectj}.jar"
                     </argLine>
-                    <suiteXmlFiles>
-                        <suiteXmlFile>testng-executer/testng_single.xml</suiteXmlFile>
-                    </suiteXmlFiles>
                 </configuration>
                 <dependencies>
                     <dependency>
