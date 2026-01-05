@@ -234,22 +234,22 @@ public class DriverManager extends Helper {
      * Quits the WebDriver instance and closes all associated windows
      * Also removes WebDriver from ThreadLocal to prevent memory leaks
      */
-    public void quit() {
+    public static void quit() {
         WebDriver driver = webDriver.get();
 
         if (driver != null) {
-            logger.info("Quitting WebDriver");
+            logger.info("[Driver Manager] Quitting WebDriver");
             try {
                 driver.quit();
                 removeDriver();
-                logger.debug("WebDriver quit successfully and removed from ThreadLocal");
+                logger.debug("[Driver Manager] WebDriver quit successfully and removed from ThreadLocal");
             } catch (Exception e) {
-                logger.error("Error while quitting WebDriver", e);
+                logger.error("[Driver Manager] Error while quitting WebDriver", e);
                 // Still try to remove from ThreadLocal even if quit fails
                 removeDriver();
             }
         } else {
-            logger.warn("Attempted to quit null WebDriver - WebDriver may not have been initialized");
+            logger.warn("[Driver Manager] Attempted to quit null WebDriver - WebDriver may not have been initialized");
         }
     }
 }

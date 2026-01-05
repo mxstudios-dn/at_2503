@@ -4,25 +4,21 @@ import java.time.Duration;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
+import org.testng.asserts.Assertion;
 
 import utils.Helper;
 
 public class BasePage extends Helper {
-    WebDriver driver;
-
-
     /**
      * Constructs a new BasePage and initializes the WebDriver instance for the current thread.
      */
     public BasePage() {
         super();
-        this.driver = DriverManager.getDriver();
     }
-
 
     /**
      * Navigates the browser to the specified URL.
@@ -33,9 +29,8 @@ public class BasePage extends Helper {
             throw new IllegalArgumentException("URL cannot be null");
         }
         logger.info("[Base Page] Navigating to URL: {}", url);
-        driver.get(url);
+        DriverManager.getDriver().get(url);
     }
-
 
     private WebElement findElement(By selector) {
         if (selector == null) {
@@ -43,7 +38,6 @@ public class BasePage extends Helper {
         }
         return getWait(TestSettings.WAIT_ELEMENT).until(ExpectedConditions.visibilityOfElementLocated(selector));
     }
-
 
     /**
      * Checks if the element located by the selector is displayed on the page.
@@ -58,7 +52,6 @@ public class BasePage extends Helper {
             return false;
         }
     }
-    
 
     /**
      * Returns a WebDriverWait instance for the given wait time (in seconds).
@@ -66,9 +59,8 @@ public class BasePage extends Helper {
      * @return WebDriverWait instance.
      */
     public WebDriverWait getWait(long waitTime) {
-        return new WebDriverWait(this.driver, Duration.ofSeconds(waitTime));
+        return new WebDriverWait(DriverManager.getDriver(), Duration.ofSeconds(waitTime));
     }
-
 
     /**
      * Waits until the element located by the selector is invisible.
@@ -88,7 +80,6 @@ public class BasePage extends Helper {
         return getWait(TestSettings.WAIT_ELEMENT).until(ExpectedConditions.elementToBeClickable(selector));
     }
 
-
     /**
      * Enters text into the element located by the selector, waiting for visibility.
      * @param selector The By selector for the element.
@@ -98,7 +89,6 @@ public class BasePage extends Helper {
         logger.info("[Base Page] Entering text {}", text);
         findElement(selector).sendKeys(text);
     }
-
 
     /**
      * Enters text into the element located by the selector without waiting for visibility.
@@ -110,9 +100,8 @@ public class BasePage extends Helper {
             throw new IllegalArgumentException("Selector cannot be null");
         }
         logger.info("[Base Page] Entering text {}", text);
-        this.driver.findElement(selector).sendKeys(text);
+        DriverManager.getDriver().findElement(selector).sendKeys(text);
     }
-
 
     /**
      * Gets the value of the specified attribute from the element located by the selector.
@@ -129,7 +118,6 @@ public class BasePage extends Helper {
         return value != null ? value : "";
     }
 
-
     /**
      * Gets the value or text content from the element located by the selector.
      * @param selector The By selector for the element.
@@ -141,7 +129,6 @@ public class BasePage extends Helper {
         return element.getText().isEmpty() ? element.getDomProperty("value") : element.getText();
     }
 
-
     /**
      * Clicks the element located by the selector, waiting until it is clickable.
      * @param selector The By selector for the element.
@@ -150,7 +137,6 @@ public class BasePage extends Helper {
         logger.info("[Base Page] Clicking element {}", selector);
         waitForElementClickable(selector).click();
     }
-
 
     /**
      * Executes the given JavaScript in the context of the current page.
@@ -161,10 +147,9 @@ public class BasePage extends Helper {
             throw new IllegalArgumentException("JavaScript script cannot be null");
         }
         logger.info("[Base Page] Executing JavaScript: {}", script);
-        JavascriptExecutor js = (JavascriptExecutor) this.driver;
+        JavascriptExecutor js = (JavascriptExecutor) DriverManager.getDriver();
         js.executeScript(script);
     }
-
 
     /**
      * Gets the visible text from the element located by the selector.
@@ -184,7 +169,7 @@ public class BasePage extends Helper {
      */
     protected Alert switchToAlert() {
         logger.info("[Base Page] Switching to alert");
-        return this.driver.switchTo().alert();
+        return DriverManager.getDriver().switchTo().alert();
     }
 
 
@@ -205,5 +190,39 @@ public class BasePage extends Helper {
     protected void dismissAlertAction(Alert alert) {
         logger.info("[Base Page] Dismissing alert");
         alert.dismiss();
+    }
+    
+    public boolean isAlertDisappeared() {
+        logger.info("[Base Page] Checking if alert is disappeared");
+        try {
+            getWait(0).until(ExpectedConditions.alertIsPresent());
+            return false;
+        } catch (Exception e) {
+            logger.info("[Base Page] Alert is not present as expected");
+        }
+        return true;
+    }
+
+    public String getAlertMessage() {
+        logger.info("[Base Page] Getting alert message");
+        Alert alert = switchToAlert();
+        String message = alert.getText();
+        logger.info("[Base Page] Alert message: {}", message);
+        return message;
+    }
+
+    public void verifyTrue(boolean condition, String errorMessage) {
+        logger.info("[Base Page] Verifying condition is true");
+        Assert.assertTrue(condition, errorMessage);
+    }
+
+    public void verifyFalse(boolean condition, String errorMessage) {
+        logger.info("[Base Page] Verifying condition is false");
+        Assert.assertFalse(condition, errorMessage);
+    }
+
+    public void verifyEquals(Object actual, Object expected, String errorMessage) {
+        logger.info("[Base Page] Verifying equality. Expected: {}, Actual: {}", expected, actual);
+        Assert.assertEquals(actual, expected, errorMessage);
     }
 }

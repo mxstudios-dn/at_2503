@@ -68,7 +68,6 @@
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
             <version>${testng.version}</version>
-            <scope>test</scope>
         </dependency>
 
         <!-- Log4j2 API -->
@@ -105,6 +104,7 @@
             <artifactId>cucumber-testng</artifactId>
             <version>${version.cucumber}</version>
         </dependency>
+        
     </dependencies>
 
     <build>
@@ -114,6 +114,7 @@
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>${version.surefire}</version>
                 <configuration>
+                    <useSystemClassLoader>false</useSystemClassLoader>
                     <argLine>
                         -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${version.aspectj}/aspectjweaver-${version.aspectj}.jar"
                     </argLine>
