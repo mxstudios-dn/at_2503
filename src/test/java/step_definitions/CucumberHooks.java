@@ -3,6 +3,7 @@ package step_definitions;
 import io.cucumber.java.*;
 import core.BasePage;
 import core.DriverManager;
+import core.ShareValueManager;
 
 
 public class CucumberHooks extends BasePage {
@@ -11,6 +12,8 @@ public class CucumberHooks extends BasePage {
     public void setUp() {
         // Code to run before each scenario
         logger.info("[Cucumber Hooks] Before scenario hook executed.");
+        ShareValueManager.clearValues();
+        ShareValueManager.setValue("SCENARIO_START_TIME", String.valueOf(System.currentTimeMillis()));
         // Launch browser
         try {
             new DriverManager();
@@ -24,7 +27,11 @@ public class CucumberHooks extends BasePage {
     public void tearDown(Scenario scenario) {
         // Code to run after each scenario
         logger.info("[Cucumber Hooks] After scenario hook executed.");
-        
+        ShareValueManager.setValue("SCENARIO_END_TIME", String.valueOf(System.currentTimeMillis()));
+        Long startTime = Long.parseLong(ShareValueManager.getValue("SCENARIO_START_TIME"));
+        Long endTime = Long.parseLong(ShareValueManager.getValue("SCENARIO_END_TIME"));
+        Long duration = (endTime - startTime) / 1000;
+        logger.info("[Cucumber Hooks] Scenario '{}' executed in {} s", scenario.getName(), duration);
         // Check if scenario failed and capture screenshot
         if (scenario.isFailed()) {
             logger.error("Test Failed: " + scenario.getName());

@@ -1,3 +1,4 @@
+@allure.label.owner:MinhPham
 Feature: Alert Scenarios
     As a user
     I want to test alert scenarios on the Alert page
@@ -6,6 +7,7 @@ Feature: Alert Scenarios
     Background:
         Given User is on the Automation demo page
     
+    @critical
     Scenario: Alert with OK & Cancel tab
         And User navigates to the 'Alert' page
         When I click "Alert with OK" button to display an alert box
@@ -15,9 +17,7 @@ Feature: Alert Scenarios
     
     # Scenario: Alert with Textbox tab
     #     And User navigates to the 'Alert' page
-    #     When I click "Alert with Textbox" button to display a prompt box
-    #     And I enter text "Automation Test" in the prompt box
-    #     And I accept the prompt box
-    #     Then I verify the prompt box accepted the text "Automation Test" successfully
+    #     When User adds sharing message: 'abc 123'
+    #     Then Verify the sharing message is added successfully
     
     

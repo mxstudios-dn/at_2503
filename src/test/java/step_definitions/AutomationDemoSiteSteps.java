@@ -2,6 +2,8 @@ package step_definitions;
 import core.BasePage;
 import core.TestSettings;
 import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
 
 public class AutomationDemoSiteSteps extends BasePage {
     
@@ -12,6 +14,16 @@ public class AutomationDemoSiteSteps extends BasePage {
         if (url != null) {
             navigateTo(TestSettings.BASE_URL);
         }
+    }
+
+    @When("User adds sharing message: {string}")
+    public void addSharingMessage(String message) {
+        // Implement the step to add sharing message
+    }
+
+    @Then("Verify the sharing message is added successfully")
+    public void verifySharingMessageAdded() {
+        // Implement the step to verify sharing message
     }
 
     @Given("User navigates to the {string} page")

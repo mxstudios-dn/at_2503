@@ -1,4 +1,5 @@
 package core;
+
 import java.time.Duration;
 
 import org.openqa.selenium.Alert;
@@ -8,11 +9,12 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
-import org.testng.asserts.Assertion;
 
+import io.qameta.allure.Step;
 import utils.Helper;
 
 public class BasePage extends Helper {
+    
     /**
      * Constructs a new BasePage and initializes the WebDriver instance for the current thread.
      */
@@ -167,31 +169,33 @@ public class BasePage extends Helper {
      * Switches the driver's context to the currently active alert.
      * @return The Alert object.
      */
+    @Step("Switch to alert")
     protected Alert switchToAlert() {
         logger.info("[Base Page] Switching to alert");
         return DriverManager.getDriver().switchTo().alert();
     }
 
-
     /**
      * Accepts the given alert.
      * @param alert The Alert to accept.
      */
+    @Step("Accepting alert")
     protected void acceptAlertAction(Alert alert) {
         logger.info("[Base Page] Accepting alert");
         alert.accept();
     }
-    
 
     /**
      * Dismisses the given alert.
      * @param alert The Alert to dismiss.
      */
+    @Step("Dismissing alert")
     protected void dismissAlertAction(Alert alert) {
         logger.info("[Base Page] Dismissing alert");
         alert.dismiss();
     }
-    
+
+    @Step("Check if alert is disappeared")
     public boolean isAlertDisappeared() {
         logger.info("[Base Page] Checking if alert is disappeared");
         try {
@@ -203,6 +207,7 @@ public class BasePage extends Helper {
         return true;
     }
 
+    @Step("Get alert message")
     public String getAlertMessage() {
         logger.info("[Base Page] Getting alert message");
         Alert alert = switchToAlert();
@@ -211,16 +216,19 @@ public class BasePage extends Helper {
         return message;
     }
 
+    @Step("Verify True Condition: {condition}")
     public void verifyTrue(boolean condition, String errorMessage) {
         logger.info("[Base Page] Verifying condition is true");
         Assert.assertTrue(condition, errorMessage);
     }
 
+    @Step("Verify False Condition: {condition}")
     public void verifyFalse(boolean condition, String errorMessage) {
         logger.info("[Base Page] Verifying condition is false");
         Assert.assertFalse(condition, errorMessage);
     }
 
+    @Step("Verify Equals Actual: {actual}, Expected: {expected}")
     public void verifyEquals(Object actual, Object expected, String errorMessage) {
         logger.info("[Base Page] Verifying equality. Expected: {}, Actual: {}", expected, actual);
         Assert.assertEquals(actual, expected, errorMessage);
