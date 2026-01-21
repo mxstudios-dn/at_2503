@@ -14,7 +14,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
         <version.json>20240303</version.json>
-        <selenium.version>4.39.0</selenium.version>
+        <appium.version>10.0.0</appium.version>
         <testng.version>7.11.0</testng.version>
         <version.surefire>3.5.4</version.surefire>
         <version.log4j>2.24.3</version.log4j>
@@ -57,10 +57,12 @@
             <version>${version.dotenv}</version> <!-- Use the latest version available -->
         </dependency>
         
+        <!-- Appium Java Client for mobile automation -->
         <dependency>
-            <groupId>org.seleniumhq.selenium</groupId>
-            <artifactId>selenium-java</artifactId>
-            <version>${selenium.version}</version>
+            <groupId>io.appium</groupId>
+            <artifactId>java-client</artifactId>
+            <version>${appium.version}</version>
+            <scope>compile</scope>
         </dependency>
 
         <dependency>
