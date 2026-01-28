@@ -1,6 +1,7 @@
 package tests;
 
 import core.AppiumDriverManager;
+import io.qameta.allure.Allure;
 
 import org.testng.ITestContext;
 import org.testng.annotations.*;
@@ -8,6 +9,8 @@ import utils.Helper;
 
 import java.net.MalformedURLException;
 import java.net.URISyntaxException;
+import java.nio.file.Paths;
+import java.nio.file.Files;
 
 /**
  * Base test class for mobile automation tests using Appium
@@ -39,13 +42,25 @@ public class MobileBaseTest extends Helper {
      * Quits the AppiumDriver and cleans up resources.
      */
     @AfterClass
-    public void tearDown() {
+    public void tearDown(ITestContext context) {
         logger.info("========================================");
         logger.info("[TearDown] Cleaning up AppiumDriver");
         logger.info("########################################");
         
+        // Capture screenshot on teardown if needed
+                if (AppiumDriverManager.getDriver() != null) {
+                String screenshotPath = captureScreenshot(context.getName()+"_afterMethod");
+                // Attach screenshot to Allure report
+                try {
+                    byte[] screenshotBytes = Files.readAllBytes(Paths.get(screenshotPath));
+                    Allure.addAttachment("Screenshot on Failure", "image/png", new java.io.ByteArrayInputStream(screenshotBytes), "png");
+                } catch (java.io.IOException e) {
+                    logger.error("Failed to attach screenshot to Allure report", e);
+                }
+            }
+
         if (appiumManager != null) {
-            // appiumManager.quit();
+            appiumManager.quit();
             logger.info("[TearDown] AppiumDriver quit successfully");
         }
     }

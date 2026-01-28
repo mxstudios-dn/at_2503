@@ -2,6 +2,7 @@ package core;
 
 import java.net.MalformedURLException;
 import java.net.URI;
+import java.time.Duration;
 
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.android.AndroidDriver;
@@ -45,7 +46,8 @@ public class AppiumDriverManager extends Helper {
             .setAppActivity(TestSettings.MAIN_ACTIVITY)
             .setAppPackage(TestSettings.APP_PACKAGE)
             .setAppWaitActivity(TestSettings.APP_WAIT_ACTIVITY)
-            .setPlatformVersion(TestSettings.PLATFORM_VERSION);
+            .setPlatformVersion(TestSettings.PLATFORM_VERSION)
+            .setNewCommandTimeout(Duration.ofSeconds(60));
         AndroidDriver driver = new AndroidDriver(URI.create(TestSettings.APPIUM_SERVER_URL).toURL(), options);
         appiumDriver.set(driver);
     }
@@ -67,5 +69,13 @@ public class AppiumDriverManager extends Helper {
 
     public static AppiumDriver getDriver() {
         return appiumDriver.get();
+    }
+
+    public void quit() {
+        AppiumDriver driver = appiumDriver.get();
+        if (driver != null) {
+            driver.quit();
+            appiumDriver.remove();
+        }
     }
 }
