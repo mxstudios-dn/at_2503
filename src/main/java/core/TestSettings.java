@@ -58,4 +58,17 @@ public class TestSettings {
     /** Selenium Grid hub URL */
     public static final String GRID_HUB_URL = "http://localhost:4444";
 
+    // APPIUM SETTINGS
+    /** Appium server type (NONE, LOCAL, REMOTE) - Usage: mvn clean test -DappiumType=LOCAL */
+    public static final String APPIUM_TYPE = System.getProperty("appiumType", DOTENV.get("APPIUM_TYPE","NONE"));
+
+    /** Appium server URL */
+    public static final String APPIUM_SERVER_URL = System.getProperty("appiumServerUrl", DOTENV.get("APPIUM_SERVER_URL","http://127.0.0.1:4723"));   
+
+    /** Mobile platform (Android, iOS) - Usage: mvn clean test -DappiumPlatform=Android */
+    public static final String APPIUM_PLATFORM = System.getProperty("appiumPlatform", DOTENV.get("APPIUM_PLATFORM","Android"));
+    public static final String PLATFORM_VERSION = System.getProperty("platformVersion", DOTENV.get("PLATFORM_VERSION","16.0"));
+    public static final String APP_PACKAGE = System.getProperty("appPackage", DOTENV.get("APP_PACKAGE","com.wdiodemoapp"));
+    public static final String MAIN_ACTIVITY = System.getProperty("mainActivity", DOTENV.get("MAIN_ACTIVITY",".MainActivity"));
+    public static final String APP_WAIT_ACTIVITY = System.getProperty("appWaitActivity", DOTENV.get("APP_WAIT_ACTIVITY","com.wdiodemoapp.*"));
 }

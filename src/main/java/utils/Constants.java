@@ -29,4 +29,7 @@ public final class Constants {
     public static final String SAMPLE_FILE_PATH = Paths.get(RESOURCES_PATH, "sample.jpg").toString();
     public static final String CURRENT_USERNAME = System.getProperty("user.name");
     public static final String DOWNLOAD_FOLDER_PATH = "/"+Paths.get("","Users", CURRENT_USERNAME,"Downloads").toString();
+
+    // Mobile Apps Constants
+    public static final String ANDROID_DEMO_APP_PATH = Paths.get(RESOURCES_PATH, "AndroidNativeDemoApp.apk").toString();
 }

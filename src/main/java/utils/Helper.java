@@ -9,7 +9,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.io.FileHandler;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import core.DriverManager;
+import core.AppiumDriverManager;
 import io.qameta.allure.Step;
 
 import java.io.File;
@@ -82,7 +82,7 @@ public class Helper {
 
     public String captureScreenshot(String testName) {
         try {
-            TakesScreenshot ts = (TakesScreenshot) DriverManager.getDriver();
+            TakesScreenshot ts = (TakesScreenshot) AppiumDriverManager.getDriver();
             File source = ts.getScreenshotAs(OutputType.FILE);
             
             // Lưu ảnh vào thư mục "screenshots" với tên là tên test case
