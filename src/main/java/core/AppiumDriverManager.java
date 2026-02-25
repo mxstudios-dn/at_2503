@@ -36,7 +36,7 @@ public class AppiumDriverManager extends Helper {
 
     public AppiumDriverManager() throws MalformedURLException{
         super();
-        // initialAppiumDriver();
+        // initialAppiumDriver();  
         initBaseOptions();
     }
 
@@ -46,6 +46,7 @@ public class AppiumDriverManager extends Helper {
             .setAppActivity(TestSettings.MAIN_ACTIVITY)
             .setAppPackage(TestSettings.APP_PACKAGE)
             .setAppWaitActivity(TestSettings.APP_WAIT_ACTIVITY)
+            
             .setPlatformVersion(TestSettings.PLATFORM_VERSION)
             .setNewCommandTimeout(Duration.ofSeconds(60));
         AndroidDriver driver = new AndroidDriver(URI.create(TestSettings.APPIUM_SERVER_URL).toURL(), options);
